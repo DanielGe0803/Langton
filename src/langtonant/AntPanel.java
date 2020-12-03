@@ -55,13 +55,17 @@ public class AntPanel extends javax.swing.JPanel {
     int y;
     //divide panel pixels using 2d array
     int[][] panel;
+    //size of grid
     static int WIDTH = 500;
     static int LENGTH = 500;
+    //directions as integers
     static final int ANT_UP = 0;
     static final int ANT_RIGHT = 1;
     static final int ANT_DOWN = 2;
     static final int ANT_LEFT = 3;
+    //start facing up
     int dir = ANT_UP;
+    //instead of white square i decided to make it grey
     Color myGrey = new Color (210,210,210);
     Timer t1 = new Timer(1, new TimerListener());
     
@@ -79,14 +83,18 @@ public class AntPanel extends javax.swing.JPanel {
     }
     
     public void turnRight(){
+        //++ as the directions are now integers
         dir++;
+        //if after adding 1 to the direction it is over 3, the int value becomes 0
         if(dir>ANT_LEFT){
             dir = ANT_UP;
         }
     }
     
     public void turnLeft(){
+        //-- as the directions are now integers
         dir--;
+        //if after subbing 1 to the direction it is under 0, the int value becomes 3
         if(dir<ANT_UP){
             dir = ANT_LEFT;
         }
@@ -124,12 +132,15 @@ public class AntPanel extends javax.swing.JPanel {
     }
     
     public void antMove(){
+        //check current color pixel ant is on
         int current = panel[x][y];
+        //if white, turn right, change color, move forward
         if(current==1){
             turnRight();
             panel[x][y] = 0;
             moveForward();
         }
+        //if black, turn left, change color, move forward
         else if(current==0){
             turnLeft();
             panel[x][y] = 1;
@@ -153,6 +164,7 @@ public class AntPanel extends javax.swing.JPanel {
     }
     
     public void paintComponent(Graphics g){
+        //color the pixel with correct color during ant movement
         if(panel[x][y]==1){
             g.setColor(myGrey);
         }
