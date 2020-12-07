@@ -84,10 +84,12 @@ public class AntFrame extends javax.swing.JFrame {
         if(running){
             antPanel1.stopAnimate();
             running = false;
+            startButton.setLabel("Start");
         }
         else if(!running){
             antPanel1.animate();
             running = true;
+            startButton.setLabel("Stop");
         }
     }//GEN-LAST:event_startButtonActionPerformed
 
