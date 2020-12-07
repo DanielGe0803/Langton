@@ -16,9 +16,9 @@ public class AntFrame extends javax.swing.JFrame {
     /**
      * Creates new form AntFrame
      */
+    boolean running = false;
     public AntFrame() {
         initComponents();
-        antPanel1.animate();
     }
 
     /**
@@ -31,7 +31,7 @@ public class AntFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         antPanel1 = new langtonant.AntPanel();
-        infoButton = new java.awt.Button();
+        startButton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LantonAnt");
@@ -40,10 +40,10 @@ public class AntFrame extends javax.swing.JFrame {
         antPanel1.setBackground(new java.awt.Color(240, 240, 240));
         antPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
-        infoButton.setLabel("Info");
-        infoButton.addActionListener(new java.awt.event.ActionListener() {
+        startButton.setLabel("Start");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoButtonActionPerformed(evt);
+                startButtonActionPerformed(evt);
             }
         });
 
@@ -52,15 +52,15 @@ public class AntFrame extends javax.swing.JFrame {
         antPanel1Layout.setHorizontalGroup(
             antPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, antPanel1Layout.createSequentialGroup()
-                .addContainerGap(454, Short.MAX_VALUE)
-                .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(449, Short.MAX_VALUE)
+                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         antPanel1Layout.setVerticalGroup(
             antPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(antPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(466, Short.MAX_VALUE))
         );
 
@@ -80,10 +80,16 @@ public class AntFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
-        JOptionPane.showMessageDialog(this,"This is Langton's Ant a cellular"
-                + " automata simulation");
-    }//GEN-LAST:event_infoButtonActionPerformed
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        if(running){
+            antPanel1.stopAnimate();
+            running = false;
+        }
+        else if(!running){
+            antPanel1.animate();
+            running = true;
+        }
+    }//GEN-LAST:event_startButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +128,6 @@ public class AntFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private langtonant.AntPanel antPanel1;
-    private java.awt.Button infoButton;
+    private java.awt.Button startButton;
     // End of variables declaration//GEN-END:variables
 }

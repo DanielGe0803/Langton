@@ -150,7 +150,6 @@ public class AntPanel extends javax.swing.JPanel {
     
     private class TimerListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-                antMove();
                 repaint();
         }
     }
@@ -172,6 +171,7 @@ public class AntPanel extends javax.swing.JPanel {
             g.setColor(Color.black);
         }
         g.fillRect(x, y, 1, 1);
+        antMove();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
